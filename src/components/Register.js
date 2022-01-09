@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/style.css';
 
 const Register = () => {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const inputField = document.querySelectorAll('.input-field');
+
+  inputField.forEach((inputLabel) => {
+    inputLabel.value
+      ? inputLabel.classList.add('has-val')
+      : inputLabel.classList.remove('has-val');
+  });
+
   return (
     <>
       <form className='loginForm'>
@@ -12,7 +24,9 @@ const Register = () => {
             type='text'
             name='fullName'
             className='input-field'
-            placeholder='Full Name'
+            value={fullName}
+            required
+            onChange={(e) => setFullName(e.target.value)}
           />
           <span className='input-label' data-placeholder='Full Name'></span>
           <span className='input-icon'>
@@ -24,7 +38,9 @@ const Register = () => {
             type='text'
             name='email'
             className='input-field'
-            placeholder='Email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required='required'
           />
           <span className='input-label' data-placeholder='Email'></span>
           <span className='input-icon'>
@@ -34,9 +50,11 @@ const Register = () => {
         <div className='wrap-input'>
           <input
             type='password'
-            name='pass'
+            name='password'
             className='input-field'
-            placeholder='Password'
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
           />
           <span className='input-label' data-placeholder='Password'></span>
           <span className='input-icon'>

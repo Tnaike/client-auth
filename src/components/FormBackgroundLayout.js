@@ -24,6 +24,7 @@ const FormBackgroundLayout = () => {
       <div className='wrap-loginForm'>
         <Router>
           <Routes>
+            <Route path='/' exact elements={<Login />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
