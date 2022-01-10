@@ -20,13 +20,13 @@ const ForgotPassword = () => {
       : inputLabel.classList.remove('has-val');
   });
 
-  const onSubmit = (data) => {
+  const handleOnSubmit = (data) => {
     console.log(JSON.stringify(data));
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className='loginForm'>
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='loginForm'>
         <h3 className='form-title'>Forgot Password</h3>
         <div className='wrap-input'>
           <input
