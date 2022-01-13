@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../assets/style.css';
 import { useForm } from 'react-hook-form';
 
@@ -13,6 +13,7 @@ const Register = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   const inputField = document.querySelectorAll('.input-field');
 
@@ -23,8 +24,18 @@ const Register = () => {
   });
 
   const handleOnSubmit = (data) => {
+    // await fetch('http://localhost:3000/api/register', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'Application/json'},
+    //   body: JSON.stringify(data)
+    // });
     console.log(JSON.stringify(data));
+    setRedirect(true);
   };
+
+  if(redirect){
+    return <Navigate to='/login'/>
+  }
 
   return (
     <>
@@ -38,7 +49,7 @@ const Register = () => {
             defaultValue={fullName}
             onChange={(e) => setFullName(e.target.value)}
             style={{
-              borderColor: errors.password && '#f00',
+              borderColor: errors.fullName && '#f00',
             }}
             {...register('fullName', {
               required: true,
